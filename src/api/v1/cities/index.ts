@@ -1,4 +1,4 @@
-import express from "express";
+import express from 'express'
 
 import {
   deleteCity,
@@ -8,17 +8,17 @@ import {
   addCityScooter,
   removeCityScooter,
   getCityScooters,
-} from "./controller";
+} from './controller'
 
-const router = express.Router();
+const router = express.Router()
 
 // Sliding session - also used to refresh jwt payload (such as role change)
-router.get("/", getCities);
-router.get("/:id", getCity);
-router.get("/:id/scooters", getCityScooters);
-router.post("/:id/scooters", addCityScooter);
-router.delete("/:id/scooters/:scooter", removeCityScooter);
-router.post("/", postCity);
-router.delete("/:id", deleteCity);
+router.get('/', getCities)
+router.post('/', postCity)
+router.get('/:id', getCity)
+router.get('/:id/scooters', getCityScooters)
+router.post('/:id/scooters', addCityScooter)
+router.delete('/:id/scooters/:scooter', removeCityScooter)
+router.delete('/:id', deleteCity)
 
-export const citiesRouter = router;
+export const citiesRouter = router

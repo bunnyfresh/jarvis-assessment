@@ -2,6 +2,8 @@ import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import { User } from "models/User";
 import { SESSION_SECRET } from "config/secrets";
+import { CityAPIFormat } from "../src/models/Cities";
+import { City } from './../src/models/Cities';
 
 interface JWTData {
     id: string;
@@ -63,4 +65,44 @@ export const registerValidUser = async ({
         role: role,
         exp: jwtExpiration
     });
+};
+
+
+
+export const addValidCities = async ({ 
+    id = "GENERIC_CITY_ID",
+    name = "OSLO",
+    scooters = [
+        {
+            id: "GENERIC_SCOOTER_ID";
+            isActive: true,
+            vehicleType: "scooter",
+            vehicleColor: "red",
+            name: {
+              first: "Jack",
+              last: "Sparrow",
+            },
+            email: "jack@mail.com",
+            phone: "+123456789",
+            deliveryAreas: [
+              {
+                name: "Oslo, Street 1",
+              },
+            ],
+            location: {
+              type: "Point",
+              coordinates: [-75, -75],
+            },
+        }
+    ]
+}: CityAPIFormat): Promise<string> => {
+    const cities = { 
+        id: id,
+        name: name,
+        scooters: scooters  
+    };
+
+    await City.create(cities);
+
+    return id;
 };
