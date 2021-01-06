@@ -1,48 +1,48 @@
-import mongoose from 'mongoose'
-import UUID from 'uuid/v4'
+import mongoose from "mongoose";
+import UUID from "uuid/v4";
 
 export interface Cities {
-  name: string
-  scooters: Array<ScooterFormat>
+  name: string;
+  scooters: Array<ScooterFormat>;
 }
 export interface CityAPIFormat {
-  id: string
-  name: string
-  scooters: Array<ScooterFormat>
+  id: string;
+  name: string;
+  scooters: Array<ScooterFormat>;
 }
 
 export interface ScooterFormat {
-  id: String
-  isActive: Boolean
-  vehicleType: String
-  vehicleColor: String
+  id: string;
+  isActive: boolean;
+  vehicleType: string;
+  vehicleColor: string;
   name: {
-    first: String
-    last: String
-  }
-  email: String
-  phone: String
+    first: string;
+    last: string;
+  };
+  email: string;
+  phone: string;
   deliveryAreas: [
     {
-      name: String
+      name: string;
     },
-  ]
+  ];
   location: {
-    type: String
-    coordinates: [Number, Number]
-  }
+    type: string;
+    coordinates: [number, number];
+  };
 }
 
 export interface Scooters {
-  scooters: Array<ScooterFormat>
+  scooters: Array<ScooterFormat>;
 }
 
 export type CityDocument = mongoose.Document & {
-  id: string
-  name: string
-  scooters: Array<ScooterFormat>
+  id: string;
+  name: string;
+  scooters: Array<ScooterFormat>;
 
-  getScooters: () => Scooters
+  getScooters: () => Scooters;
 }
 
 const citySchema = new mongoose.Schema(
@@ -52,16 +52,16 @@ const citySchema = new mongoose.Schema(
     scooters: { type: Array },
   },
   { timestamps: true },
-)
+);
 
 citySchema.methods = {
   getScooters: function (): Scooters {
     const result = {
       scooters: this.scooters,
-    }
+    };
 
-    return result
+    return result;
   },
-}
+};
 
-export const City = mongoose.model<CityDocument>('cities', citySchema)
+export const City = mongoose.model<CityDocument>("cities", citySchema);
