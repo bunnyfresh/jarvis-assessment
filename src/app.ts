@@ -10,15 +10,12 @@ mongoose.set('useNewUrlParser', true)
 mongoose.set('useCreateIndex', true)
 mongoose.set('useUnifiedTopology', true)
 
-mongoose
-  .connect(MONGO_URI)
-  .catch((err): void => {
-    logger.error(
-      'MongoDB connection error. Please make sure MongoDB is running. ' + err,
-    )
-    process.exit(1)
-  })
-  .then((e) => console.log('!!!!!!!!!!!', e))
+mongoose.connect(MONGO_URI).catch((err): void => {
+  logger.error(
+    'MongoDB connection error. Please make sure MongoDB is running. ' + err,
+  )
+  process.exit(1)
+})
 
 const app = express()
 
