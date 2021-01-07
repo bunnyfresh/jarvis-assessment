@@ -10,7 +10,7 @@ import { setupPassport } from './passport'
 import logger from '../util/logger'
 
 export const setupExpress = (app: Express): void => {
-  app.set('port', APP_PORT)
+  //   app.set('port', APP_PORT)
 
   const corsOptions = {
     origin: (origin: string, callback: Function): void => {
